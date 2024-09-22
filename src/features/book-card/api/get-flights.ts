@@ -7,7 +7,7 @@ import { Flight } from "@/types/api";
 export const getFlights = (): Promise<{
   flights: Flight[];
 }> => {
-  return api.get("/flights", {
+  return api.get("/schipol/", {
     params: {
       includedelays: false,
     },
@@ -16,7 +16,7 @@ export const getFlights = (): Promise<{
 
 export const getFlightsQueryOptions = () => {
   return queryOptions({
-    queryKey: ["flights"],
+    queryKey: ["schipol"],
     queryFn: () => getFlights(),
   });
 };

@@ -1,14 +1,11 @@
+import { env } from "@/config/env";
 import Axios, { InternalAxiosRequestConfig } from "axios";
 
 // import { useNotifications } from "@/components/ui/notifications";
-import { env } from "@/config/env";
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
     config.headers.Accept = "application/json";
-    config.headers["ResourceVersion"] = "v4";
-    config.headers["app_id"] = env.SCHIPHOL_ID;
-    config.headers["app_key"] = env.SCHIPHOL_KEY;
   }
 
   config.withCredentials = true;
@@ -16,7 +13,8 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
 }
 
 export const api = Axios.create({
-  baseURL: "/api",
+  baseURL: env.API_URL,
+  withCredentials: true,
 });
 
 api.interceptors.request.use(authRequestInterceptor);
