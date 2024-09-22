@@ -2,6 +2,7 @@ import useSortingStore from "@/hooks/store";
 import { useFlights } from "../api/get-flights";
 import { FlightCard } from "./flight-card";
 import { Flight } from "@/types/api";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const filterByStops = (flights: Flight[] | undefined, stopsFilter: string) => {
   return flights?.filter((flight) => {
@@ -60,12 +61,16 @@ export const FlightsHomepage = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-8">
-      {sortedFlights?.map((flight) => (
-        <div key={flight.id} className="flex flex-col">
-          <FlightCard flight={flight} />
-        </div>
-      ))}
-    </div>
+    <ScrollArea className="h-full md:h-[560px] ">
+      {" "}
+      {/* ScrollArea ekledik */}
+      <div className="flex flex-col gap-y-8">
+        {sortedFlights?.map((flight) => (
+          <div key={flight.id} className="flex flex-col">
+            <FlightCard flight={flight} />
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
   );
 };
