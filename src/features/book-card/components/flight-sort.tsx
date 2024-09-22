@@ -1,18 +1,21 @@
-import React from "react";
+// todo: selected airlines not implemented yet
+
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import useSortingStore from "@/hooks/store";
 
 export const FlightSort = () => {
+  const sortBy = useSortingStore((state: { sortBy: string }) => state.sortBy);
+
   return (
     <div className="flex flex-col gap-y-4 md:w-64 md:gap-y-8">
       <div className="flex items-center justify-between md:flex-col md:items-start md:gap-y-4">
@@ -20,18 +23,27 @@ export const FlightSort = () => {
           Sort by:
         </Label>
 
-        <Select>
+        <Select
+          value={sortBy}
+          onValueChange={(value) => {
+            useSortingStore.setState({ sortBy: value });
+          }}
+        >
           <SelectTrigger className="bg-white">
-            <SelectValue placeholder="Select a fruit" />
+            <SelectValue placeholder="Select sorting..." />
           </SelectTrigger>
           <SelectContent id="select" className="flex-1">
             <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
+              <SelectItem value="+scheduleTime">Schedule Time (asc)</SelectItem>
+              <SelectItem value="-scheduleTime">
+                Schedule Time (desc)
+              </SelectItem>
+              <SelectItem value="+flightName">Flight Name (asc)</SelectItem>
+              <SelectItem value="-flightName">Flight Name (desc)</SelectItem>
+              <SelectItem value="+mainFlight">Main Flight (asc)</SelectItem>
+              <SelectItem value="-mainFlight">Main Flight (desc)</SelectItem>
+              <SelectItem value="+scheduleDate">Airline Code (asc)</SelectItem>
+              <SelectItem value="-scheduleDate">Airline Code (desc)</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -43,10 +55,7 @@ export const FlightSort = () => {
         >
           Arrival Time
         </Label>
-        <RadioGroup
-          className="flex items-center justify-center  md:flex-col md:items-start md:gap-y-4"
-          defaultValue="comfortable"
-        >
+        <RadioGroup className="flex items-center justify-center  md:flex-col md:items-start md:gap-y-4">
           <div className="flex items-center space-x-2">
             <RadioGroupItem
               value="default"
@@ -65,43 +74,51 @@ export const FlightSort = () => {
           </div>
         </RadioGroup>
       </div>
-      <div className="flex flex-col gap-y-4 ">
+      <div className="flex flex-col gap-y-4">
         <Label
           htmlFor="selectStops"
-          className="w-full text-center font-bold md:text-left "
+          className="w-full text-center font-bold md:text-left"
         >
           Stops
         </Label>
         <RadioGroup
-          className="flex  items-center justify-center md:flex-col md:items-start md:gap-y-4"
-          defaultValue="a1"
+          className="flex items-center justify-center md:flex-col md:items-start md:gap-y-4"
+          defaultValue="nonstop"
+          onValueChange={(value) => useSortingStore.setState({ stops: value })}
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="a1"
+              value="nonstop"
               id="a1"
               className="data-[state=checked]:bg-mainPurple"
             />
-            <Label htmlFor="a1">Nonstop</Label>
+            <Label htmlFor="a1" className="cursor-pointer">
+              Nonstop
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="a2"
+              value="1stop"
               id="a2"
               className="data-[state=checked]:bg-mainPurple"
             />
-            <Label htmlFor="a2">1 Stop</Label>
+            <Label htmlFor="a2" className="cursor-pointer">
+              1 Stop
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="a3"
+              value="2plusstop"
               id="a3"
               className="data-[state=checked]:bg-mainPurple"
             />
-            <Label htmlFor="a3">2+ Stop</Label>
+            <Label htmlFor="a3" className="cursor-pointer">
+              2+ Stops
+            </Label>
           </div>
         </RadioGroup>
       </div>
+
       <div className="flex flex-col gap-y-4 ">
         <Label
           htmlFor="selectAirlines"
