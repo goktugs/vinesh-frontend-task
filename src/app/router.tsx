@@ -6,9 +6,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { AppRoot } from "./routes/app/root";
 import { FlightsRoute } from "./routes/app/flights";
-import { FlightCard } from "@/features/book-card/components/flight-card";
 import { FlightSort } from "@/features/book-card/components/flight-sort";
 import { SearchFlightsRoute } from "./routes/app/search-flights";
+import { FlightsHomepage } from "@/features/book-card/components/flights-homepage";
 
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
@@ -43,9 +43,7 @@ export const createAppRouter = (queryClient: QueryClient) =>
               element: (
                 <div className="flex flex-col-reverse gap-y-8  md:flex-row md:gap-x-8">
                   <div className="flex-1">
-                    <FlightCard />
-                    <FlightCard />
-                    <FlightCard />
+                    <FlightsHomepage />
                   </div>
                   <div className="flex flex-col gap-y-4 ">
                     <FlightSort />

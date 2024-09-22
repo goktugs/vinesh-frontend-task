@@ -11,15 +11,11 @@ import { Input } from "@/components/ui/input";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Calendar, PlaneLanding, PlaneTakeoff } from "lucide-react";
 import { useState } from "react";
-// import { useFlights } from "../api/get-flights";
 import { useNavigate } from "react-router-dom";
 
 export const FlightSelection = () => {
   const [value, setValue] = useState("round-trip");
-  // const { data } = useFlights();
   const navigate = useNavigate();
-
-  // console.log(data?.flights.map((flight) => flight.flightName));
 
   return (
     <Card>
