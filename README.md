@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+1. **Project Info:**
+   - **Name**: `vinesh-frontend-task`
+   - **Version**: `0.0.1`
+   - **Type**: `"module"` to indicate it's an ES module.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. **Scripts:**
+   - `"dev"`: Runs Vite's development server.
+   - `"build"`: Compiles TypeScript (`tsc -b`) and builds the Vite project.
+   - `"lint"`: Runs ESLint for code linting.
+   - `"preview"`: Previews the Vite build.
 
-Currently, two official plugins are available:
+3. **Dependencies**:
+   - **Radix UI Components**: Provides various interactive elements like `Accordion`, `Checkbox`, `Dialog`, etc.
+   - **React and React DOM**: `^18.3.1` version of React and React DOM for the project.
+   - **State Management**: `zustand` is used for state management.
+   - **Framer Motion**: For animations and transitions.
+   - **Axios**: For making HTTP requests.
+   - **React Router DOM**: For navigation.
+   - **React Query**: For fetching, caching, and updating server state.
+   - **Zod**: For schema validation.
+   - **Tailwind CSS**: For utility-first CSS, along with `tailwindcss-animate` for animation utilities and `tailwind-merge` for merging Tailwind classes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+4. **Dev Dependencies**:
+   - **ESLint & Plugins**: Ensures the code adheres to specified standards.
+   - **TypeScript**: For static type-checking and better developer experience.
+   - **Tailwind CSS and PostCSS**: For styling with Tailwind CSS and its PostCSS processor.
+   - **Vite Plugin React**: Adds support for React in Vite.
 
-## Expanding the ESLint configuration
+5. **Screenshots**:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![image](https://github.com/user-attachments/assets/527a33b5-d246-4dbb-a716-bd5567de7b2d)
+![image](https://github.com/user-attachments/assets/3bb9ad3e-7c34-4b69-bd2c-5e4ed0de78da)
 
-- Configure the top-level `parserOptions` property like this:
+![image](https://github.com/user-attachments/assets/00bf9460-1a69-48a0-b4fd-de3683eb88d5)
+![image](https://github.com/user-attachments/assets/a88ca5ea-1608-4ea5-8fd0-da233ad359db)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+This setup is well-suited for a modern React project, leveraging Tailwind CSS, TypeScript, and a solid build system with Vite.
