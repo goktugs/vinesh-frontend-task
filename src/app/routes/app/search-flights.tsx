@@ -1,6 +1,9 @@
-// import { SearchedFlightCard } from "@/features/searched-fligths/components/searched-flight-card";
-import React from "react";
+import { SearchedFlightCard } from "@/features/searched-fligths/components/searched-flight-card";
 
 export const SearchFlightsRoute = () => {
-  return <div>{/* <SearchedFlightCard /> */}</div>;
+  return (
+    <div>
+      <SearchedFlightCard />{" "}
+    </div>
+  );
 };
