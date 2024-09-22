@@ -1,9 +1,7 @@
-// FlightsRoute.js
-
 import { Outlet } from "react-router-dom";
 import { UserNav } from "@/features/user-nav/components/user-nav";
 import { Earth, Plane, Tag } from "lucide-react";
-// import { FlightSelection } from "@/features/book-card/components/flight-selection";
+import { FlightSelection } from "@/features/book-card/components/flight-selection";
 
 export const FlightsRoute = () => {
   return (
@@ -29,7 +27,7 @@ export const FlightsRoute = () => {
           <UserNav />
         </div>
       </div>
-      {/* <FlightSelection /> */}
+      <FlightSelection />
       <Outlet />
     </div>
   );
