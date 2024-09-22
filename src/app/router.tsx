@@ -1,30 +1,48 @@
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
-// import { ProtectedRoute } from "@/lib/auth";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import { AppRoot } from "./routes/app/root";
 import { FlightsRoute } from "./routes/app/flights";
 import { FlightSort } from "@/features/book-card/components/flight-sort";
 import { SearchFlightsRoute } from "./routes/app/search-flights";
 import { FlightsHomepage } from "@/features/book-card/components/flights-homepage";
+import { AuthRoot } from "./routes/auth/root";
+import { LoginRoute } from "./routes/auth/login";
 
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
-      path: "/auth/register",
-      lazy: async () => {
-        const { RegisterRoute } = await import("./routes/auth/register");
-        return { Component: RegisterRoute };
-      },
-    },
-    {
-      path: "/auth/login",
-      lazy: async () => {
-        const { LoginRoute } = await import("./routes/auth/login");
-        return { Component: LoginRoute };
-      },
+      path: "/auth",
+      element: (
+        // <ProtectedRoute>
+        <AuthRoot />
+        // <ProtectedRoute>
+      ),
+      children: [
+        {
+          path: "register",
+          element: (
+            <div className="flex size-full items-center justify-center">
+              <div>Register</div>
+            </div>
+          ),
+        },
+        {
+          path: "login",
+          element: (
+            <div className="flex size-full items-center justify-center">
+              <div>
+                <LoginRoute />
+              </div>
+            </div>
+          ),
+        },
+      ],
     },
     {
       path: "/",
@@ -34,6 +52,10 @@ export const createAppRouter = (queryClient: QueryClient) =>
         // </ProtectedRoute>
       ),
       children: [
+        {
+          index: true,
+          element: <Navigate to="/homepage" replace />,
+        },
         {
           path: "homepage",
           element: <FlightsRoute />,
