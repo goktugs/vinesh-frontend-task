@@ -2,9 +2,5 @@
 import React from "react";
 
 export const SearchFlightsRoute = () => {
-  return (
-    <div>
-      <SearchedFlightCard />
-    </div>
-  );
+  return <div>{/* <SearchedFlightCard /> */}</div>;
 };
